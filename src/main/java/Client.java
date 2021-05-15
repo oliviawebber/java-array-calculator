@@ -4,6 +4,7 @@ import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.Inet4Address;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.Executors;
@@ -12,14 +13,14 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class Client {
     static int count = 0;
     public static void main(String[] args) throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress("localhost",8888),0);
+        HttpServer server = HttpServer.create(new InetSocketAddress(Inet4Address.getLocalHost().getHostAddress(),8888),0);
         server.createContext("/metric", new MetricHandler());
         ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
         server.setExecutor(threadPoolExecutor);
         server.start();
         while(true) {
-            Matrix m1 = Matrix.generateMatrix(1000);
-            Matrix m2 = Matrix.generateMatrix(1000);
+            Matrix m1 = Matrix.generateMatrix(100000);
+            Matrix m2 = Matrix.generateMatrix(100000);
             m1.slowMultiply(m2);
             count++;
         }
