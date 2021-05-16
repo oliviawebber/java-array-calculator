@@ -19,8 +19,8 @@ public class Client {
         server.setExecutor(threadPoolExecutor);
         server.start();
         while(true) {
-            Matrix m1 = Matrix.generateMatrix(100000);
-            Matrix m2 = Matrix.generateMatrix(100000);
+            Matrix m1 = Matrix.generateMatrix(10000);
+            Matrix m2 = Matrix.generateMatrix(10000);
             m1.slowMultiply(m2);
             count++;
         }
