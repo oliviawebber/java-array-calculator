@@ -11,7 +11,7 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class Client {
+public class ArrayClient {
     static int count = 0;
     static int size = 1000000;
     static Random rng = new Random();
@@ -27,24 +27,11 @@ public class Client {
         server.setExecutor(threadPoolExecutor);
         server.start();
         while(true) {
-            Matrix m1 = Matrix.generateMatrix(10000);
-            Matrix m2 = Matrix.generateMatrix(10000);
-            m1.slowMultiply(m2);
+            int result = 0;
+            for(int i = 0; i < 100; i++) {
+                result += array[rng.nextInt(size)];
+            }
             count++;
-        }
-    }
-}
-
-class MetricHandler implements HttpHandler {
-    @Override
-    public void handle(HttpExchange exchange) throws IOException {
-        if("GET".equals(exchange.getRequestMethod())) {
-            String htmlResponse = "<html><body>" + Client.count + "</body></html>";
-            OutputStream os = exchange.getResponseBody();
-            exchange.sendResponseHeaders(200,htmlResponse.length());
-            os.write(htmlResponse.getBytes(StandardCharsets.UTF_8));
-            os.flush();
-            os.close();
         }
     }
 }
