@@ -12,7 +12,7 @@ import static java.lang.Thread.sleep;
 
 public class SleepClient {
     static int count = 0;
-    static int size = Integer.MAX_VALUE;
+    static int size = Integer.MAX_VALUE / 5;
     static Random rng = new Random();
 
     public static void main(String[] args) throws IOException, InterruptedException {
