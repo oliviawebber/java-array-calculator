@@ -13,7 +13,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class ArrayClient {
     static int count = 0;
-    static int size = Integer.MAX_VALUE;
+    static int size = Integer.MAX_VALUE / 5;
+    static int samples = 1000;
     static Random rng = new Random();
 
     public static void main(String[] args) throws IOException {
@@ -28,7 +29,7 @@ public class ArrayClient {
         server.start();
         while(true) {
             int result = 0;
-            for(int i = 0; i < 100; i++) {
+            for(int i = 0; i < samples; i++) {
                 result += array[rng.nextInt(size)];
             }
             count++;
