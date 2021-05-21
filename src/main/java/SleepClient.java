@@ -1,22 +1,21 @@
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.Inet4Address;
 import java.net.InetSocketAddress;
-import java.nio.charset.StandardCharsets;
+import java.net.UnknownHostException;
 import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class ArrayClient {
+import static java.lang.Thread.sleep;
+
+public class SleepClient {
     static int count = 0;
     static int size = Integer.MAX_VALUE;
     static Random rng = new Random();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         int[] array = new int[size];
         for(int i = 0; i < size; i++) {
             array[i] = rng.nextInt();
@@ -27,6 +26,7 @@ public class ArrayClient {
         server.setExecutor(threadPoolExecutor);
         server.start();
         while(true) {
+            sleep(rng.nextInt(500) + 500);
             int result = 0;
             for(int i = 0; i < 100; i++) {
                 result += array[rng.nextInt(size)];
