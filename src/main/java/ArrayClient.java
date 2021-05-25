@@ -36,3 +36,18 @@ public class ArrayClient {
         }
     }
 }
+
+
+class MetricHandler implements HttpHandler {
+    @Override
+    public void handle(HttpExchange exchange) throws IOException {
+        if("GET".equals(exchange.getRequestMethod())) {
+            String htmlResponse = "<html><body>" + ArrayClient.count + "</body></html>";
+            OutputStream os = exchange.getResponseBody();
+            exchange.sendResponseHeaders(200,htmlResponse.length());
+            os.write(htmlResponse.getBytes(StandardCharsets.UTF_8));
+            os.flush();
+            os.close();
+        }
+    }
+}
