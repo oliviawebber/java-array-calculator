@@ -36,4 +36,5 @@ spec:
               path: /metric
               port: 8888
             initialDelaySeconds: 30
-            timeoutSeconds: 1
+            timeoutSeconds: 10
+            periodSeconds: 20
