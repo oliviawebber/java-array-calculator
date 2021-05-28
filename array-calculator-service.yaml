@@ -28,8 +28,7 @@ spec:
     spec:
       containers:
         - name: array-calculator
-          image: webberlh/array-calculator
-          imagePullPolicy: Never
+          image: 10.0.0.100:5000/webberlh/array-calculator:latest
           ports:
             - containerPort: 8888
           livenessProbe:
