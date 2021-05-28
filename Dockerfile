@@ -3,4 +3,4 @@ COPY ./src/main/java /app
 EXPOSE 8888
 RUN javac /app/*.java
 WORKDIR /app
-CMD java Client
+CMD java ArrayClient
