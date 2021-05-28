@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class ArrayClient {
     static int count = 0;
-    static int size = Integer.MAX_VALUE / 5;
+    static int size = Integer.MAX_VALUE / 10;
     static int samples = 1000;
     static Random rng = new Random();
 
