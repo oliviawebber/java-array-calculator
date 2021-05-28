@@ -1,5 +1,5 @@
-FROM openjdk:8-jre
-ADD build/Client.class Client.class
-ADD build/MetricHandler.class MetricHandler.class
+FROM openjdk:8-jdk
+COPY ./src/main/java /app
 EXPOSE 8888
+RUN javac /app/*.java
 ENTRYPOINT ["java","Client"]
