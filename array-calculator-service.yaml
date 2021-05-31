@@ -26,6 +26,7 @@ spec:
       labels:
         app: array-calculator
     spec:
+      schedulerName: extended-default-scheduler
       containers:
         - name: array-calculator
           image: 10.0.0.100:5000/webberlh/array-calculator:latest
